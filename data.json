@@ -1,0 +1,443 @@
+{
+  "meta": {
+    "latestVersion": null,
+    "latestUpdateTitle": null,
+    "latestUpdateUrl": "https://devforum.roblox.com/t/emergency-hamburg-updates-and-information-en/2388146",
+    "lastCheckedAt": null
+  },
+  "police": {
+    "image": "https://wiki.emergency-hamburg.com/locations/2026/police-station.png",
+    "jobImages": [
+      "https://wiki.emergency-hamburg.com/police/patrolpolice_gfx.png",
+      "https://wiki.emergency-hamburg.com/police/sek_gfx2.png",
+      "https://wiki.emergency-hamburg.com/police/undercoverpolice_gfx.png",
+      "https://wiki.emergency-hamburg.com/police/trafficpolice_gfx.png"
+    ],
+    "translations": {
+      "fr": {
+        "badge": "FR",
+        "title": "Poste de police",
+        "description": "Poste de police qui regroupe les principaux métiers de la police d’Emergency Hamburg.",
+        "jobsTitle": "Métiers",
+        "jobs": [
+          [
+            "Police de patrouille",
+            "Patrouilles et interventions de police courantes."
+          ],
+          [
+            "SEK",
+            "Unité spécialisée pour les interventions à haut risque."
+          ],
+          [
+            "Police en civil",
+            "Travail discret et interventions en tenue civile."
+          ],
+          [
+            "Police routière",
+            "Surveillance et interventions liées à la circulation."
+          ]
+        ],
+        "hint": "Cliquez ailleurs sur la carte pour explorer."
+      },
+      "en": {
+        "badge": "ENG",
+        "title": "Police Station",
+        "description": "Police station containing the main police roles available in Emergency Hamburg.",
+        "jobsTitle": "Roles",
+        "jobs": [
+          [
+            "Patrol Police",
+            "Patrols and regular police interventions."
+          ],
+          [
+            "SEK",
+            "Specialized unit for high-risk interventions."
+          ],
+          [
+            "Undercover Police",
+            "Discreet operations and interventions in civilian clothing."
+          ],
+          [
+            "Traffic Police",
+            "Traffic monitoring and road-related interventions."
+          ]
+        ],
+        "hint": "Click elsewhere on the map to explore."
+      },
+      "de": {
+        "badge": "DE",
+        "title": "Polizeiwache",
+        "description": "Polizeiwache mit den wichtigsten Polizeiberufen in Emergency Hamburg.",
+        "jobsTitle": "Berufe",
+        "jobs": [
+          [
+            "Streifenpolizei",
+            "Streifenfahrten und gewöhnliche Polizeieinsätze."
+          ],
+          [
+            "SEK",
+            "Spezialeinheit für Einsätze mit hohem Risiko."
+          ],
+          [
+            "Zivilpolizei",
+            "Diskrete Einsätze und Ermittlungen in ziviler Kleidung."
+          ],
+          [
+            "Verkehrspolizei",
+            "Verkehrsüberwachung und Einsätze im Straßenverkehr."
+          ]
+        ],
+        "hint": "Klicken Sie woanders auf die Karte."
+      }
+    }
+  },
+  "fire": {
+    "image": "https://wiki.emergency-hamburg.com/locations/2026/fire-station.png",
+    "jobImages": [
+      "https://wiki.emergency-hamburg.com/game-ui/rescue-service.png",
+      "https://wiki.emergency-hamburg.com/game-ui/firefighter.png",
+      "https://wiki.emergency-hamburg.com/game-ui/emergency-doctor.png",
+      "https://wiki.emergency-hamburg.com/game-ui/fire-commander.png"
+    ],
+    "translations": {
+      "fr": {
+        "badge": "FR",
+        "title": "Caserne de pompiers",
+        "description": "Caserne principale regroupant les pompiers et les services de secours médical d’Emergency Hamburg.",
+        "jobsTitle": "Métiers",
+        "jobs": [
+          [
+            "Médecin / Ambulancier",
+            "Prise en charge des blessés et transports d'urgence."
+          ],
+          [
+            "Pompier",
+            "Lutte contre les incendies et interventions de secours."
+          ],
+          [
+            "Médecin d'urgence",
+            "Interventions médicales critiques et soins avancés."
+          ],
+          [
+            "Chef des pompiers",
+            "Gestion et commandement des opérations de secours."
+          ]
+        ],
+        "hint": "Cliquez ailleurs sur la carte pour explorer."
+      },
+      "en": {
+        "badge": "ENG",
+        "title": "Fire Station",
+        "description": "Main fire station combining firefighters and medical emergency services in Emergency Hamburg.",
+        "jobsTitle": "Roles",
+        "jobs": [
+          [
+            "Paramedic / EMS",
+            "Medical emergency care and patient transport."
+          ],
+          [
+            "Firefighter",
+            "Firefighting and rescue operations."
+          ],
+          [
+            "Emergency Doctor",
+            "Critical medical responses and advanced care."
+          ],
+          [
+            "Fire Commander",
+            "Incident management and rescue command."
+          ]
+        ],
+        "hint": "Click elsewhere on the map to explore."
+      },
+      "de": {
+        "badge": "DE",
+        "title": "Feuerwache",
+        "description": "Hauptfeuerwache für Feuerwehr und Rettungsdienst in Emergency Hamburg.",
+        "jobsTitle": "Berufe",
+        "jobs": [
+          [
+            "Rettungssanitäter",
+            "Erstversorgung und Notfalltransporte."
+          ],
+          [
+            "Feuerwehrmann",
+            "Brandbekämpfung und Technische Hilfeleistung."
+          ],
+          [
+            "Notarzt",
+            "Medizinische Versorgung bei lebensbedrohlichen Notfällen."
+          ],
+          [
+            "Einsatzleiter",
+            "Leitung und Koordination von Rettungseinsätzen."
+          ]
+        ],
+        "hint": "Klicken Sie woanders auf die Karte."
+      }
+    }
+  },
+  "trucker": {
+    "image": "https://wiki.emergency-hamburg.com/locations/2026/truck-company.png",
+    "trucks": [
+      {
+        "name": "Stuttgart Schwerkraft",
+        "price": "$45,000",
+        "speed": "110 km/h",
+        "img": "https://wiki.emergency-hamburg.com/vehicles-new/stuttgart/schwerkraft/truck-driver.png"
+      },
+      {
+        "name": "Stellar S100 Electric",
+        "price": "$65,000",
+        "speed": "125 km/h",
+        "img": "https://wiki.emergency-hamburg.com/vehicles-new/stellar/s100-electric.png"
+      },
+      {
+        "name": "MEN TX Hauler",
+        "price": "$80,000",
+        "speed": "115 km/h",
+        "img": "https://wiki.emergency-hamburg.com/vehicles-new/men/tx-hauler.png"
+      },
+      {
+        "name": "Stuttgart Colossus",
+        "price": "$110,000",
+        "speed": "105 km/h",
+        "img": "https://wiki.emergency-hamburg.com/vehicles-new/stuttgart/colossus/truck-driver.png"
+      },
+      {
+        "name": "Nordvik H7",
+        "price": "$140,000",
+        "speed": "120 km/h",
+        "img": "https://wiki.emergency-hamburg.com/vehicles-new/nordvik/h7.png"
+      }
+    ],
+    "trailers": [
+      {
+        "name": "Remorque Standard",
+        "img": "https://wiki.emergency-hamburg.com/truck-driver/trailers/standard-trailer.png"
+      },
+      {
+        "name": "Remorque Citerne",
+        "img": "https://wiki.emergency-hamburg.com/truck-driver/trailers/fuel-trailer.png"
+      },
+      {
+        "name": "Remorque Plateau",
+        "img": "https://wiki.emergency-hamburg.com/truck-driver/trailers/flatbed-trailer.png"
+      },
+      {
+        "name": "Remorque Bûcheron",
+        "img": "https://wiki.emergency-hamburg.com/truck-driver/trailers/log-trailer.png"
+      },
+      {
+        "name": "Porte-Véhicules",
+        "img": "https://wiki.emergency-hamburg.com/truck-driver/trailers/vehicle-trailer.png"
+      }
+    ],
+    "translations": {
+      "fr": {
+        "badge": "FR",
+        "title": "Entreprise de Camionneurs",
+        "description": "Secteur de logistique pour la livraison de marchandises et transports lourds.",
+        "jobTitle": "Camionneur",
+        "jobDesc": "Transport et livraison de marchandises à travers la ville.",
+        "hint": "Cliquez ailleurs sur la carte pour explorer."
+      },
+      "en": {
+        "badge": "ENG",
+        "title": "Trucking Company",
+        "description": "Logistics sector for cargo deliveries and heavy transport.",
+        "jobTitle": "Truck Driver",
+        "jobDesc": "Cargo transport and deliveries across the city.",
+        "hint": "Click elsewhere on the map to explore."
+      },
+      "de": {
+        "badge": "DE",
+        "title": "Spedition & Logistik",
+        "description": "Logistikzentrum für Gütertransport und Lieferungen.",
+        "jobTitle": "LKW-Fahrer",
+        "jobDesc": "Gütertransport und Lieferungen in der Stadt.",
+        "hint": "Klicken Sie woanders auf die Karte."
+      }
+    }
+  },
+  "adac": {
+    "image": "https://wiki.emergency-hamburg.com/locations/2026/hars-garage.png",
+    "jobImages": [
+      "https://wiki.emergency-hamburg.com/hars/hars-icon2.png"
+    ],
+    "vehiclesBtnText": "🚘 Flotte de Véhicules HARS",
+    "vehicles": [
+      {
+        "name": "Stuttgart Jogger",
+        "img": "https://wiki.emergency-hamburg.com/vehicles-new/stuttgart/jogger/hars.png"
+      },
+      {
+        "name": "Wolfsburg Marin",
+        "img": "https://wiki.emergency-hamburg.com/vehicles-new/wolfsburg/marin/hars.png"
+      },
+      {
+        "name": "Wolfsburg Discovery",
+        "img": "https://wiki.emergency-hamburg.com/vehicles-new/wolfsburg/discovery/hars.png"
+      },
+      {
+        "name": "BKM Tourer",
+        "img": "https://wiki.emergency-hamburg.com/vehicles-new/bkm/tourer/hars.png"
+      },
+      {
+        "name": "Quad HARS",
+        "img": "https://wiki.emergency-hamburg.com/vehicles-new/other/quad/hars.png"
+      },
+      {
+        "name": "Wolfsburg Handel",
+        "img": "https://wiki.emergency-hamburg.com/vehicles-new/wolfsburg/handel/hars.png"
+      },
+      {
+        "name": "UTV HARS",
+        "img": "https://wiki.emergency-hamburg.com/vehicles-new/other/utv/hars.png"
+      },
+      {
+        "name": "Wolfsburg Karen",
+        "img": "https://wiki.emergency-hamburg.com/vehicles-new/wolfsburg/karen/hars.png"
+      },
+      {
+        "name": "Wolfsburg Pickup",
+        "img": "https://wiki.emergency-hamburg.com/vehicles-new/wolfsburg/pickup/hars.png"
+      },
+      {
+        "name": "Avantismo A6",
+        "img": "https://wiki.emergency-hamburg.com/vehicles-new/avantismo/a6/hars.png"
+      },
+      {
+        "name": "Avantismo Q4",
+        "img": "https://wiki.emergency-hamburg.com/vehicles-new/avantismo/q4/hars.png"
+      },
+      {
+        "name": "Stuttgart Lastkraft",
+        "img": "https://wiki.emergency-hamburg.com/vehicles-new/stuttgart/lastkraft/hars.png"
+      }
+    ],
+    "translations": {
+      "fr": {
+        "badge": "FR",
+        "title": "HARS / ADAC Dépannage",
+        "description": "Service d'assistance routière, de réparation mécanique et de remorquage.",
+        "jobsTitle": "Métiers",
+        "jobs": [
+          [
+            "Agent HARS / Mécanicien",
+            "Assistance routière, réparation et remorquage des véhicules."
+          ]
+        ],
+        "hint": "Cliquez ailleurs sur la carte pour explorer."
+      },
+      "en": {
+        "badge": "ENG",
+        "title": "HARS / ADAC Assistance",
+        "description": "Roadside assistance, mechanical repair and vehicle towing service.",
+        "jobsTitle": "Roles",
+        "jobs": [
+          [
+            "HARS Agent / Mechanic",
+            "Roadside assistance, vehicle repair and towing."
+          ]
+        ],
+        "hint": "Click elsewhere on the map to explore."
+      },
+      "de": {
+        "badge": "DE",
+        "title": "HARS / ADAC Pannendienst",
+        "description": "Pannendienst, Fahrzeugreparatur und Abschleppdienst.",
+        "jobsTitle": "Berufe",
+        "jobs": [
+          [
+            "HARS Mitarbeiter / Mechaniker",
+            "Pannenhilfe, Fahrzeugreparatur und Abschleppdienst."
+          ]
+        ],
+        "hint": "Klicken Sie woanders auf die Karte."
+      }
+    }
+  },
+  "bus": {
+    "image": "https://wiki.emergency-hamburg.com/locations/2026/bus-company.png",
+    "jobImages": [
+      "https://wiki.emergency-hamburg.com/bus-driver/bus-driver-gfx1.png"
+    ],
+    "vehiclesBtnText": "🚌 Flotte des Bus",
+    "vehicles": [
+      {
+        "name": "Stuttgart Omnibus",
+        "img": "https://wiki.emergency-hamburg.com/vehicles-new/stuttgart/omnibus/bus-driver.png"
+      },
+      {
+        "name": "Stuttgart Omnibus Electric",
+        "img": "https://wiki.emergency-hamburg.com/vehicles-new/stuttgart/omnibus/electric/bus-driver.png"
+      },
+      {
+        "name": "Brazil Bus",
+        "img": "https://wiki.emergency-hamburg.com/vehicles-new/other/brazil/bus-driver.png"
+      },
+      {
+        "name": "Stuttgart Coach",
+        "img": "https://wiki.emergency-hamburg.com/vehicles-new/stuttgart/coach/bus-driver.png"
+      },
+      {
+        "name": "Stuttgart Omnibus Articulated",
+        "img": "https://wiki.emergency-hamburg.com/vehicles-new/stuttgart/omnibus/articulated.png"
+      },
+      {
+        "name": "Stuttgart Omnibus Electric Articulated",
+        "img": "https://wiki.emergency-hamburg.com/vehicles-new/stuttgart/omnibus/electric/articulated.png"
+      },
+      {
+        "name": "Stuttgart Jogger",
+        "img": "https://wiki.emergency-hamburg.com/vehicles-new/stuttgart/jogger/bus-driver.png"
+      },
+      {
+        "name": "Stuttgart Executive",
+        "img": "https://wiki.emergency-hamburg.com/vehicles-new/stuttgart/executive/bus-driver.png"
+      }
+    ],
+    "translations": {
+      "fr": {
+        "badge": "FR",
+        "title": "Dépôt de Bus",
+        "description": "Station centrale des bus assurant le transport public des citoyens à travers les différentes lignes de la ville.",
+        "jobsTitle": "Métiers",
+        "jobs": [
+          [
+            "Chauffeur de Bus",
+            "Transport des passagers le long des arrêts de bus de la ville."
+          ]
+        ],
+        "hint": "Cliquez ailleurs sur la carte pour explorer."
+      },
+      "en": {
+        "badge": "ENG",
+        "title": "Bus Depot",
+        "description": "Central bus station managing public transport for citizens across city routes.",
+        "jobsTitle": "Roles",
+        "jobs": [
+          [
+            "Bus Driver",
+            "Transporting passengers along public city bus routes."
+          ]
+        ],
+        "hint": "Click elsewhere on the map to explore."
+      },
+      "de": {
+        "badge": "DE",
+        "title": "Busdepot",
+        "description": "Zentrales Busdepot für den öffentlichen Personennahverkehr der Stadt.",
+        "jobsTitle": "Berufe",
+        "jobs": [
+          [
+            "Busfahrer",
+            "Beförderung von Fahrgästen entlang der städtischen Buslinien."
+          ]
+        ],
+        "hint": "Klicken Sie woanders auf die Karte."
+      }
+    }
+  }
+}
