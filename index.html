@@ -398,7 +398,7 @@ window.addEventListener('DOMContentLoaded', async () => {
   checkConsent();
 
   try {
-    const response = await fetch('data.json');
+   const response = await fetch('./data.json?v=' + Date.now());
     if (!response.ok) throw new Error('HTTP ' + response.status);
     locationsData = await response.json();
   } catch (err) {
