@@ -29,20 +29,13 @@
     /* Info Cards Layout */
     .info-header { margin-bottom: 25px; }
     .info-header h1 { font-size: 1.8em; color: #4da6ff; margin-bottom: 5px; }
-    .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+    .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
     .card { background: #1a1a1e; border: 1px solid #2d2d35; border-radius: 8px; padding: 20px; }
     .card h3 { color: #fff; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; font-size: 1.1em; }
     .badge { background: #007bff; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; font-weight: bold; }
     
     .youtube-card { border: 1px solid #e50914; }
     .btn-yt { display: block; width: 100%; padding: 12px; background: #ff0000; color: white; text-align: center; font-weight: bold; text-decoration: none; border-radius: 6px; margin-top: 15px; }
-    
-    /* Updates Container */
-    .update-list { display: flex; flex-direction: column; gap: 15px; max-height: 400px; overflow-y: auto; padding-right: 5px; }
-    .update-item { background: #222228; border-left: 3px solid #007bff; padding: 12px; border-radius: 4px; }
-    .update-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
-    .update-title { font-weight: bold; font-size: 0.95em; color: #fff; }
-    .update-desc { font-size: 0.85em; color: #b0b0b8; line-height: 1.4; }
     
     /* Map CSS */
     #map { width: 100%; height: 100%; background: #0d0d10; }
@@ -87,15 +80,21 @@
           <a href="https://youtube.com" target="_blank" class="btn-yt">S'abonner à la chaîne YouTube</a>
         </div>
 
-        <!-- Card Mises à jour Dynamique avec Historique -->
+        <!-- Card Mises à jour Dynamique -->
         <div class="card">
-          <h3>📢 Mises à Jour du Jeu (DevForum)</h3>
-          <div id="latest-update-container" class="update-list">
-            <p style="color: #aaa; font-size: 0.9em;">Chargement des notes de mise à jour...</p>
+          <h3>📢 Dernière Mise à Jour du Jeu</h3>
+          <div id="latest-update-container">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+              <span class="badge" id="maj-version">V3.15</span>
+              <strong id="maj-title">V3.15 Jeweler & Trucking Update</strong>
+            </div>
+            <p id="maj-desc" style="font-size: 0.85em; color: #aaa; margin-bottom: 12px;">
+              Nouvelle refonte de la Bijouterie avec mini-jeu de désactivation d'alarme, garde PNJ avec carte d'accès, coffre-fort et sortie sur le toit.
+            </p>
+            <a id="maj-link" href="https://devforum.roblox.com/t/emergency-hamburg-updates-and-information-en/2388146" target="_blank" style="color: #4da6ff; text-decoration: none; font-size: 0.9em;">
+              Voir les patch notes complets sur le forum officiel →
+            </a>
           </div>
-          <a id="maj-link" href="https://devforum.roblox.com/t/emergency-hamburg-updates-and-information-en/2388146" target="_blank" style="display: block; margin-top: 15px; color: #4da6ff; text-decoration: none; font-size: 0.85em; font-weight: bold;">
-            Consulter le DevForum officiel Roblox →
-          </a>
         </div>
 
         <!-- Card À Propos -->
@@ -123,30 +122,11 @@
     let locationsData = {};
     let map;
 
-    // Patch Notes par défaut issus du DevForum Roblox
-    const defaultUpdates = [
-      {
-        version: "V3.15",
-        title: "Jeweler & Trucking Update",
-        description: "Refonte complète du braquage de la Bijouterie (système d'alarme, gardes PNJ, coffre-fort et sortie toit), retravail du travail de chauffeur routier avec nouvelles cargaisons et récompenses."
-      },
-      {
-        version: "V3.14",
-        title: "Bus & City Update",
-        description: "Ajout de nouvelles lignes de bus, retravail de plusieurs intersections de la ville et corrections de bugs d'optimisation."
-      },
-      {
-        version: "V3.13",
-        title: "Police Vehicles & Siren Overhaul",
-        description: "Nouveaux véhicules d'intervention pour les forces de l'ordre, ajout de sirènes customisées et amélioration des gyrophares."
-      }
-    ];
-
     // Initialisation au chargement de la page
     document.addEventListener("DOMContentLoaded", async () => {
       initMap();
       await loadData();
-      renderUpdates();
+      loadLatestUpdateInfo();
     });
 
     // Initialisation de la Carte Leaflet
@@ -160,6 +140,7 @@
         zoomControl: true
       });
 
+      // Remplace avec le chemin de ton image de carte si besoin
       const image = L.imageOverlay('map.png', bounds).addTo(map);
       map.fitBounds(bounds);
 
@@ -184,26 +165,15 @@
       }
     }
 
-    // Affichage des mises à jour (depuis data.json si présent, sinon fallback)
-    function renderUpdates() {
-      const container = document.getElementById('latest-update-container');
-      let updatesList = defaultUpdates;
-
-      if (locationsData && locationsData.meta && Array.isArray(locationsData.meta.updates)) {
-        updatesList = locationsData.meta.updates;
-      } else if (locationsData && locationsData.meta && locationsData.meta.latestUpdate) {
-        updatesList = [locationsData.meta.latestUpdate];
+    // Récupération dynamique / Mise à jour des Patch Notes
+    function loadLatestUpdateInfo() {
+      if (locationsData && locationsData.meta && locationsData.meta.latestUpdate) {
+        const update = locationsData.meta.latestUpdate;
+        if(update.version) document.getElementById('maj-version').innerText = update.version;
+        if(update.title) document.getElementById('maj-title').innerText = update.title;
+        if(update.description) document.getElementById('maj-desc').innerText = update.description;
+        if(update.linkUrl) document.getElementById('maj-link').href = update.linkUrl;
       }
-
-      container.innerHTML = updatesList.map(item => `
-        <div class="update-item">
-          <div class="update-header">
-            <span class="badge">${item.version || 'MAJ'}</span>
-            <span class="update-title">${item.title || ''}</span>
-          </div>
-          <p class="update-desc">${item.description || ''}</p>
-        </div>
-      `).join('');
     }
 
     // Gestion du changement d'onglets (Carte / Info)
