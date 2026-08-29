@@ -1,399 +1,230 @@
 <!DOCTYPE html>
-
 <html lang="fr">
-
 <head>
-
   <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Emergency Hamburg - Carte & Info</title>
-
   
-
   <!-- Leaflet CSS -->
-
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-
   
-
   <style>
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body { font-family: Arial, sans-serif; background-color: #121214; color: #fff; display: flex; height: 100vh; overflow: hidden; }
-
     
-
     /* Sidebar */
-
     #sidebar { width: 280px; background: #1a1a1e; border-right: 1px solid #2d2d35; display: flex; flex-direction: column; padding: 15px; gap: 10px; z-index: 1000; }
-
     .nav-buttons { display: flex; gap: 10px; margin-bottom: 10px; }
-
     .nav-btn { flex: 1; padding: 10px; border: none; border-radius: 6px; background: #2a2a32; color: #8e8e93; font-weight: bold; cursor: pointer; }
-
     .nav-btn.active { background: #007bff; color: white; }
-
     
-
     .cursor-info { background: #0d0d10; border: 1px solid #007bff; padding: 10px; border-radius: 6px; font-family: monospace; font-size: 0.9em; }
-
     .cursor-info span { color: #00ff66; display: block; }
 
-
-
     /* Content Area */
-
     #main-content { flex: 1; position: relative; }
-
     #map-view, #info-view { width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
-
     #info-view { display: none; padding: 30px; overflow-y: auto; background: #121214; }
 
-
-
     /* Info Cards Layout */
-
     .info-header { margin-bottom: 25px; }
-
     .info-header h1 { font-size: 1.8em; color: #4da6ff; margin-bottom: 5px; }
-
-    .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-
+    .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
     .card { background: #1a1a1e; border: 1px solid #2d2d35; border-radius: 8px; padding: 20px; }
-
     .card h3 { color: #fff; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; font-size: 1.1em; }
-
     .badge { background: #007bff; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; font-weight: bold; }
-
     
-
     .youtube-card { border: 1px solid #e50914; }
-
     .btn-yt { display: block; width: 100%; padding: 12px; background: #ff0000; color: white; text-align: center; font-weight: bold; text-decoration: none; border-radius: 6px; margin-top: 15px; }
-
     
-
+    /* Updates Container */
+    .update-list { display: flex; flex-direction: column; gap: 15px; max-height: 400px; overflow-y: auto; padding-right: 5px; }
+    .update-item { background: #222228; border-left: 3px solid #007bff; padding: 12px; border-radius: 4px; }
+    .update-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .update-title { font-weight: bold; font-size: 0.95em; color: #fff; }
+    .update-desc { font-size: 0.85em; color: #b0b0b8; line-height: 1.4; }
+    
     /* Map CSS */
-
     #map { width: 100%; height: 100%; background: #0d0d10; }
-
   </style>
-
 </head>
-
 <body>
 
-
-
   <!-- Sidebar -->
-
   <div id="sidebar">
-
     <div class="nav-buttons">
-
       <button class="nav-btn active" onclick="switchTab('carte')">🗺️ CARTE</button>
-
       <button class="nav-btn" onclick="switchTab('info')">ℹ️ INFO</button>
-
     </div>
-
-
 
     <div class="cursor-info">
-
       📍 CURSEUR :
-
       <span id="coords-display">[0, 0]</span>
-
       <span id="case-display" style="color: #ffaa00;">Case : --</span>
-
     </div>
-
   </div>
-
-
 
   <!-- Main Content -->
-
   <div id="main-content">
-
     
-
     <!-- CARTE VIEW -->
-
     <div id="map-view">
-
       <div id="map"></div>
-
     </div>
-
-
 
     <!-- INFO VIEW -->
-
     <div id="info-view">
-
       <div class="info-header">
-
         <h1>Emergency Hamburg - Centre d'Informations</h1>
-
         <p style="color: #aaa;">Retrouvez les actualités, la chaîne YouTube et les liens communautaires.</p>
-
       </div>
-
-
 
       <div class="info-grid">
-
         <!-- Card Youtube -->
-
         <div class="card youtube-card">
-
           <h3>▶️ Chaîne YouTube Officielle</h3>
-
           <p style="color: #ccc; font-size: 0.9em;">Retrouvez mes vidéos, tutoriels, présentations des véhicules et guides complets sur Emergency Hamburg !</p>
-
           <a href="https://youtube.com" target="_blank" class="btn-yt">S'abonner à la chaîne YouTube</a>
-
         </div>
 
-
-
-        <!-- Card Mises à jour Dynamique -->
-
+        <!-- Card Mises à jour Dynamique avec Historique -->
         <div class="card">
-
-          <h3>📢 Dernière Mise à Jour du Jeu</h3>
-
-          <div id="latest-update-container">
-
-            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-
-              <span class="badge" id="maj-version">V3.15</span>
-
-              <strong id="maj-title">V3.15 Jeweler & Trucking Update</strong>
-
-            </div>
-
-            <p id="maj-desc" style="font-size: 0.85em; color: #aaa; margin-bottom: 12px;">
-
-              Nouvelle refonte de la Bijouterie avec mini-jeu de désactivation d'alarme, garde PNJ avec carte d'accès, coffre-fort et sortie sur le toit.
-
-            </p>
-
-            <a id="maj-link" href="https://devforum.roblox.com/t/emergency-hamburg-updates-and-information-en/2388146" target="_blank" style="color: #4da6ff; text-decoration: none; font-size: 0.9em;">
-
-              Voir les patch notes complets sur le forum officiel →
-
-            </a>
-
+          <h3>📢 Mises à Jour du Jeu (DevForum)</h3>
+          <div id="latest-update-container" class="update-list">
+            <p style="color: #aaa; font-size: 0.9em;">Chargement des notes de mise à jour...</p>
           </div>
-
+          <a id="maj-link" href="https://devforum.roblox.com/t/emergency-hamburg-updates-and-information-en/2388146" target="_blank" style="display: block; margin-top: 15px; color: #4da6ff; text-decoration: none; font-size: 0.85em; font-weight: bold;">
+            Consulter le DevForum officiel Roblox →
+          </a>
         </div>
-
-
 
         <!-- Card À Propos -->
-
         <div class="card">
-
           <h3>🎮 À propos d'Emergency Hamburg</h3>
-
           <p style="font-size: 0.9em; color: #ccc; margin-bottom: 10px;">
-
             Emergency Hamburg est une expérience Roleplay et de simulation de secours développée sur Roblox par Elbside Studios.
-
           </p>
-
           <ul style="font-size: 0.85em; color: #aaa; padding-left: 20px; line-height: 1.5;">
-
             <li>Métiers civils et de secours : Police, Pompiers, Médecins HARS, Bus et Camionneurs.</li>
-
             <li>Système d'interventions : Incendies, urgences et braquages.</li>
-
             <li>Économie & Tuning : Achat et personnalisation de véhicules.</li>
-
           </ul>
-
         </div>
-
       </div>
-
     </div>
-
-
 
   </div>
 
-
-
   <!-- Leaflet JS -->
-
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-
-
   <script>
-
     // DECLARATION UNIQUE GLOBALE DE LA VARIABLE
-
     let locationsData = {};
-
     let map;
 
-
+    // Patch Notes par défaut issus du DevForum Roblox
+    const defaultUpdates = [
+      {
+        version: "V3.15",
+        title: "Jeweler & Trucking Update",
+        description: "Refonte complète du braquage de la Bijouterie (système d'alarme, gardes PNJ, coffre-fort et sortie toit), retravail du travail de chauffeur routier avec nouvelles cargaisons et récompenses."
+      },
+      {
+        version: "V3.14",
+        title: "Bus & City Update",
+        description: "Ajout de nouvelles lignes de bus, retravail de plusieurs intersections de la ville et corrections de bugs d'optimisation."
+      },
+      {
+        version: "V3.13",
+        title: "Police Vehicles & Siren Overhaul",
+        description: "Nouveaux véhicules d'intervention pour les forces de l'ordre, ajout de sirènes customisées et amélioration des gyrophares."
+      }
+    ];
 
     // Initialisation au chargement de la page
-
     document.addEventListener("DOMContentLoaded", async () => {
-
       initMap();
-
       await loadData();
-
-      loadLatestUpdateInfo();
-
+      renderUpdates();
     });
 
-
-
     // Initialisation de la Carte Leaflet
-
     function initMap() {
-
       const bounds = [[0, 0], [1000, 1000]];
-
       
-
       map = L.map('map', {
-
         crs: L.CRS.Simple,
-
         minZoom: -1,
-
         maxZoom: 3,
-
         zoomControl: true
-
       });
-
-
-
-      // Remplace avec le chemin de ton image de carte si besoin
 
       const image = L.imageOverlay('map.png', bounds).addTo(map);
-
       map.fitBounds(bounds);
 
-
-
       // Suivi du curseur
-
       map.on('mousemove', function(e) {
-
         const x = Math.round(e.latlng.lng);
-
         const y = Math.round(e.latlng.lat);
-
         document.getElementById('coords-display').innerText = `[${x}, ${y}]`;
-
       });
-
     }
-
-
 
     // Chargement dynamique du data.json
-
     async function loadData() {
-
       try {
-
         const res = await fetch('./data.json?v=' + Date.now());
-
         if (res.ok) {
-
           locationsData = await res.json();
-
           console.log("Données chargées avec succès !");
-
         }
-
       } catch (err) {
-
         console.warn("data.json non trouvé ou invalide, utilisation des données par défaut.");
-
       }
-
     }
 
+    // Affichage des mises à jour (depuis data.json si présent, sinon fallback)
+    function renderUpdates() {
+      const container = document.getElementById('latest-update-container');
+      let updatesList = defaultUpdates;
 
-
-    // Récupération dynamique / Mise à jour des Patch Notes
-
-    function loadLatestUpdateInfo() {
-
-      if (locationsData && locationsData.meta && locationsData.meta.latestUpdate) {
-
-        const update = locationsData.meta.latestUpdate;
-
-        if(update.version) document.getElementById('maj-version').innerText = update.version;
-
-        if(update.title) document.getElementById('maj-title').innerText = update.title;
-
-        if(update.description) document.getElementById('maj-desc').innerText = update.description;
-
-        if(update.linkUrl) document.getElementById('maj-link').href = update.linkUrl;
-
+      if (locationsData && locationsData.meta && Array.isArray(locationsData.meta.updates)) {
+        updatesList = locationsData.meta.updates;
+      } else if (locationsData && locationsData.meta && locationsData.meta.latestUpdate) {
+        updatesList = [locationsData.meta.latestUpdate];
       }
 
+      container.innerHTML = updatesList.map(item => `
+        <div class="update-item">
+          <div class="update-header">
+            <span class="badge">${item.version || 'MAJ'}</span>
+            <span class="update-title">${item.title || ''}</span>
+          </div>
+          <p class="update-desc">${item.description || ''}</p>
+        </div>
+      `).join('');
     }
-
-
 
     // Gestion du changement d'onglets (Carte / Info)
-
     function switchTab(tabName) {
-
       const carteView = document.getElementById('map-view');
-
       const infoView = document.getElementById('info-view');
-
       const buttons = document.querySelectorAll('.nav-btn');
-
-
 
       buttons.forEach(btn => btn.classList.remove('active'));
 
-
-
       if (tabName === 'carte') {
-
         carteView.style.display = 'block';
-
         infoView.style.display = 'none';
-
         buttons[0].classList.add('active');
-
         setTimeout(() => map.invalidateSize(), 100);
-
       } else {
-
         carteView.style.display = 'none';
-
         infoView.style.display = 'block';
-
         buttons[1].classList.add('active');
-
       }
-
     }
-
   </script>
-
 </body>
-
 </html>
