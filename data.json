@@ -1,10 +1,15 @@
 {
   "meta": {
-    "latestVersion": "3.15",
-    "latestUpdateTitle": "V3.15 Jeweler & Trucking Update",
+    "latestVersion": "3.16",
+    "latestUpdateTitle": "V3.16 Community Update",
     "latestUpdateUrl": "https://devforum.roblox.com/t/emergency-hamburg-updates-and-information-en/2388146",
-    "lastCheckedAt": "2026-10-17T03:55:18+00:00",
+    "lastCheckedAt": "2026-10-18T04:01:17+00:00",
     "changelog": [
+      {
+        "version": "3.16",
+        "title": "V3.16 Community Update",
+        "detectedAt": "2026-10-18T04:01:17+00:00"
+      },
       {
         "version": "3.15",
         "title": "V3.15 Jeweler & Trucking Update",
